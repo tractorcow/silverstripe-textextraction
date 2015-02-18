@@ -17,5 +17,7 @@ before_script:
   - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
   - cd ~/builds/ss
 
-script: 
+script:
+  - echo $PATH
+  - tika --version
   - vendor/bin/phpunit --verbose textextraction/tests/
