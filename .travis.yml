@@ -18,6 +18,4 @@ before_script:
   - cd ~/builds/ss
 
 script:
-  - echo $PATH
-  - tika --version
   - vendor/bin/phpunit --verbose textextraction/tests/

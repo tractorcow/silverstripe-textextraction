@@ -7,7 +7,9 @@ class TikaTextExtractorTest extends SapphireTest {
 	
 	function testExtraction() {
 		$extractor = new TikaTextExtractor();
-		if(!$extractor->isAvailable()) $this->markTestSkipped('tika not available');
+		if(!$extractor->isAvailable()) {
+			$this->markTestSkipped('tika not available in path '.getenv('path'));
+		}
 
 		// Check file
 		$file = Director::baseFolder() . '/textextraction/tests/fixtures/test1.pdf';
