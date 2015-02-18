@@ -8,6 +8,12 @@ class TikaTextExtractorTest extends SapphireTest {
 	function testExtraction() {
 		$extractor = new TikaTextExtractor();
 		if(!$extractor->isAvailable()) {
+			exec('tika --version', $output);
+			Debug::dump($output);
+			exec('~/bin/tika --version', $output);
+			Debug::dump($output);
+			exec('/home/travis/bin/tika --version', $output);
+			Debug::dump($output);
 			$this->markTestSkipped('tika not available in path "'.getenv('PATH').'"');
 		}
 
