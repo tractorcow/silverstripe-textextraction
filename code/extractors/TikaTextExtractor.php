@@ -43,6 +43,9 @@ class TikaTextExtractor extends FileTextExtractor {
 	public function getVersion() {
 		$code = $this->runShell('tika --version', $stdout);
 
+		Debug::dump($code);
+		Debug::dump($stdout);
+
 		// Parse output
 		if(!$code && preg_match('/Apache Tika (?<version>[\.\d]+)/', $stdout, $matches)) {
 			return $matches['version'];
