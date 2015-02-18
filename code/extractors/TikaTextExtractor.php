@@ -25,17 +25,6 @@ class TikaTextExtractor extends FileTextExtractor {
 	private static $output_mode = '-t';
 
 	/**
-	 * Get the environment locale
-	 *
-	 * @return string
-	 */
-	protected function getLocale() {
-		$search = array('{locale}', '{default}');
-		$replacements = array(i18n::get_locale(), i18n::default_locale());
-		return str_replace($search, $replacements, $this->config()->locale);
-	}
-
-	/**
 	 * Get the version of tika installed, or 0 if not installed
 	 *
 	 * @return float version of tika
@@ -69,12 +58,9 @@ class TikaTextExtractor extends FileTextExtractor {
 			1 => array("pipe", "w"),
 			2 => array("pipe", "w")
 		);
-		$env = array(
-			'LANG' => $this->getLocale()
-		);
 		// Invoke command
 		$pipes = array();
-		$proc = proc_open($command, $descriptorSpecs, $pipes, null, $env);
+		$proc = proc_open($command, $descriptorSpecs, $pipes);
 		if (!is_resource($proc)) return 255;
 
 		// Send content as input
